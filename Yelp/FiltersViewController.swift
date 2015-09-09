@@ -25,6 +25,8 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.reloadData()
+        
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.6, green:0, blue:0, alpha:1.00)
     }
 
     override func didReceiveMemoryWarning() {

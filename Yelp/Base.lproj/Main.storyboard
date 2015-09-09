@@ -194,11 +194,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Yt-Ce-c1a">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="WpM-em-3kb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancelButton:" destination="3He-er-o54" id="VQk-Xd-Pzq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="FNu-Iu-vm1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onSearchButton:" destination="3He-er-o54" id="i94-am-Kym"/>
                             </connections>

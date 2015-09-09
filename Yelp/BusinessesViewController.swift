@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
 
     var businesses: [Business]!
     var searchBar = UISearchBar()
@@ -23,9 +23,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 120
 
         searchBar.text = "Restaurants"
+        searchBar.delegate = self
         navigationItem.titleView = searchBar
 
-        navigationController!.navigationBar.barTintColor = UIColor(red:0.753, green:0.063, blue:0.004, alpha:1.00)
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.6, green:0, blue:0, alpha:1.00)
 
         Business.searchWithTerm("Restaurants", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -67,6 +68,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             self.businesses = businesses
             self.tableView.reloadData()
         }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        println("Search button clicked")
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        println("Search cancelled")
     }
 
     // MARK: - Navigation
