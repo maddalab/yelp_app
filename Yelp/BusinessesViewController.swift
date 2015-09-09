@@ -11,7 +11,7 @@ import UIKit
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate {
 
     var businesses: [Business]!
-    
+    var searchBar = UISearchBar()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -22,7 +22,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
 
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        searchBar.text = "Restaurants"
+        navigationItem.titleView = searchBar
+
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.753, green:0.063, blue:0.004, alpha:1.00)
+
+        Business.searchWithTerm("Restaurants", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             self.tableView.reloadData()
@@ -31,15 +36,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                 println(business.address!)
             }
         })
-        
-//        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-//            self.businesses = businesses
-//            
-//            for business in businesses {
-//                println(business.name!)
-//                println(business.address!)
-//            }
-//        }
     }
 
     override func didReceiveMemoryWarning() {

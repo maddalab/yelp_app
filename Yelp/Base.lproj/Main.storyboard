@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Yelp-->
+        <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
                 <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,8 +121,9 @@
                             <constraint firstItem="cx0-hc-ANn" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="vfr-ys-WUC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="uFj-fu-n2e">
+                    <navigationItem key="navigationItem" id="uFj-fu-n2e">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="7ya-HQ-BZU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="u93-Qj-cQj" kind="modal" id="3QV-TW-pKS"/>
                             </connections>
