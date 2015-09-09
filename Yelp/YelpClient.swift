@@ -9,10 +9,10 @@
 import UIKit
 
 // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
-let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
-let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
-let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
-let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+let yelpConsumerKey = "_POw4oaZnTT_ThL6GmTt0g"
+let yelpConsumerSecret = "AHp779YlQU7q8AQgaX9MCGt2uJ4"
+let yelpToken = "PhmPOtEyeuKLBQ9q4fZbR1e6K9iE3Eq_"
+let yelpTokenSecret = "EUZn6iE7gM4_ljBAj5HQSb7dcQA"
 
 enum YelpSortMode: Int {
     case BestMatched = 0, Distance, HighestRated
