@@ -35,9 +35,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         categoriesTableView.dataSource = self
         categoriesTableView.reloadData()
         
-        // table view class
+        // table view classes
+        categoriesTableView.registerClass(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
         categoriesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-        
         categoriesTableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "UITableViewHeaderFooterView")
         
         navigationController!.navigationBar.barTintColor = UIColor(red:0.6, green:0, blue:0, alpha:1.00)
