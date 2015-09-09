@@ -36,7 +36,6 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         categoriesTableView.reloadData()
         
         // table view classes
-        categoriesTableView.registerClass(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
         categoriesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         categoriesTableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "UITableViewHeaderFooterView")
         
