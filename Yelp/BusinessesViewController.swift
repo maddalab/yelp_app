@@ -32,10 +32,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             self.businesses = businesses
             
             self.tableView.reloadData()
-            for business in businesses {
-                println(business.name!)
-                println(business.address!)
-            }
         })
     }
 

@@ -17,7 +17,16 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var categoriesTableView: UITableView!
     weak var delegate : FiltersViewControllerDelegate?
     
+    let categories = Business.searchCategories()
     var switchStates = [Int:Bool]()
+    
+    let sections = ["":["Offering A Deal"],
+        "Distance": ["2 blocks", "1 mile", "5 miles"],
+        "Sort By": ["Best Matched", "Distance", "Highest Rated"],
+        "Categories": []
+    ]
+    
+    let sectionHeaders = [ "", "Distance", "Sort By", "Categories"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +34,11 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.reloadData()
+        
+        // table view class
+        categoriesTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        
+        categoriesTableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "UITableViewHeaderFooterView")
         
         navigationController!.navigationBar.barTintColor = UIColor(red:0.6, green:0, blue:0, alpha:1.00)
     }
@@ -44,9 +58,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         var filters = [String : AnyObject]()
         
         var selected = [String]()
-        var categories = Business.searchCategories()
         for (row,isSelected) in switchStates {
-            println("@@@ \(row)")
             if (isSelected) {
                 selected.append(categories[row]["code"]!)
             }
@@ -55,29 +67,52 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         if (selected.count > 0) {
             filters["categories"] = selected
         }
-        
-        println(filters)
-        
+
         delegate?.filtersViewController?(self, didUpdateFilters: filters)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Business.searchCategories().count
+        let key = sectionHeaders[section]
+        if key == "Categories" {
+            return categories.count
+        } else {
+            return sections[key]!.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoryTableViewCell
+        let key = sectionHeaders[indexPath.section]
+        let row = indexPath.row
+
+        if key == "Categories" {
+            let name = categories[row]["name"]
+            let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
-        cell.categoryLabel.text = Business.searchCategories()[indexPath.row]["name"]
-        cell.delegate = self
-        let on = switchStates[indexPath.row] ?? false
-        cell.categoryOnSwitch.on = on
-        return cell
+            cell.categoryLabel.text = categories[row]["name"]
+            cell.delegate = self
+            let on = switchStates[row] ?? false
+            cell.categoryOnSwitch.on = on
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath) as! UITableViewCell
+            cell.textLabel!.text = sections[key]![indexPath.row]
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("UITableViewHeaderFooterView") as! UITableViewHeaderFooterView
+        header.textLabel.text = sectionHeaders[section] 
+        return header
     }
     
     func categoryTableViewCell(categoryTableViewCell: CategoryTableViewCell, value: Bool) {        
         let indexPath = categoriesTableView.indexPathForCell(categoryTableViewCell)
         switchStates[indexPath!.row] = value
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sections.count
     }
 
     /*
